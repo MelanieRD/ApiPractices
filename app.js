@@ -1,13 +1,15 @@
-// importando express
 const express = require("express");
 const app = express();
 const PORT = 3000;
 
-//rutas
-const routes = require("./routes"); //importamos nuestro archivo de rutas
-app.use("/api", routes);
-//localhost:3000/api
+require("dotenv").config;
+//mongo
+const MongoClient = require("mongodb");
+const url = process.env.MONGO_URL;
+
+const router = require("./routes");
+app.use("/app", router);
 
 app.listen(PORT, () => {
-  console.log("Listing port at: " + PORT);
+  console.log("listening Server");
 });
